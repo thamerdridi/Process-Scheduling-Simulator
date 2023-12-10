@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "process.h"
 
-// Round Robin scheduling function
+
 static inline void roundRobin(Process *processes, int n, int quantum) {
     int *remainingTime = malloc(n * sizeof(int));
     int currentTime = 0, totalWaitTime = 0, totalTurnaroundTime = 0, completed = 0;
@@ -13,13 +13,12 @@ static inline void roundRobin(Process *processes, int n, int quantum) {
     int *turnaroundTime = malloc(n * sizeof(int));
     int *isCompleted = calloc(n, sizeof(int));
 
-    // Initialize arrays
+   
     for (int i = 0; i < n; i++) {
         remainingTime[i] = processes[i].exec_time;
         waitTime[i] = -1;
     }
 
-    // Enhanced Gantt Chart display
     printf("\n┌─────────────────────────────┐\n");
     printf("│       Gantt Chart          │\n");
     printf("└─────────────────────────────┘\n");
@@ -47,7 +46,7 @@ static inline void roundRobin(Process *processes, int n, int quantum) {
                 }
             }
         }
-        // If no process was executed in this round, increment current time
+        
         if (completed == n) {
             break;
         }
@@ -55,7 +54,7 @@ static inline void roundRobin(Process *processes, int n, int quantum) {
     }
     printf("|\n");
 
-    // Enhanced average time display
+    
     printf("\n┌─────────────────────────────┐\n");
     printf("| Average Wait Time: %.2f     |\n", (float)totalWaitTime / n);
     printf("| Average Turnaround Time: %.2f|\n", (float)totalTurnaroundTime / n);
@@ -67,5 +66,4 @@ static inline void roundRobin(Process *processes, int n, int quantum) {
     free(isCompleted);
 }
 
-#endif // RR_H
-
+#endif 

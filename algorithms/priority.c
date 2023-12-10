@@ -36,15 +36,14 @@ void priorityScheduling(Process *processes, int n) {
     int currentTime = 0, completed = 0;
     int lastProcess = -1;
     int totalWaitTime = 0, totalTurnaroundTime = 0;
-    int running = -1; // Index of the currently running process
-
-    // Print Gantt Chart Header
+    int running = -1; 
+    
     printf("Gantt Chart:\n");
 
     while (completed < n) {
-        int highestPriority = -1; // Now the highest value has the highest priority
+        int highestPriority = -1; 
 
-        // Find the process with the highest priority that has arrived and is not completed
+        
         for (int i = 0; i < n; i++) {
             if (processes[i].arrival_time <= currentTime && processes[i].exec_time > 0) {
                 if (processes[i].priority > highestPriority) {
@@ -54,13 +53,13 @@ void priorityScheduling(Process *processes, int n) {
             }
         }
 
-        // No process is currently running, increment currentTime
+        
         if (highestPriority == -1) {
             currentTime++;
             continue;
         }
 
-        // If a process with a higher priority preempts the current process
+        
         if (lastProcess != running) {
             if (lastProcess != -1) {
                 printf("%d)] ", currentTime);
@@ -69,11 +68,11 @@ void priorityScheduling(Process *processes, int n) {
             lastProcess = running;
         }
 
-        // Running the process
+        
         processes[running].exec_time--;
         currentTime++;
 
-        // If the process finishes
+        
         if (processes[running].exec_time == 0) {
             printf("%d)] ", currentTime);
             completed++;

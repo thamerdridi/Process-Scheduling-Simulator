@@ -6,7 +6,7 @@ void generate_process_file(int num_processes) {
     static int file_counter = 1;
     char filename[20];
 
-    // Create a filename
+   
     sprintf(filename, "file%d.txt", file_counter++);
 
     FILE* file = fopen(filename, "w");
@@ -17,14 +17,14 @@ void generate_process_file(int num_processes) {
 
     srand((unsigned int)time(NULL));
 
-    // P0 with a fixed arrival time of 0
+   
     fprintf(file, "P0 0 %d %d\n", rand() % 10 + 1, rand() % 10 + 1);
 
-    // Generate the rest of the processes
+   
     for (int i = 1; i < num_processes; i++) {
-        int arrival_time = rand() % 11; // Random arrival time [0,10]
-        int exec_time = rand() % 10 + 1; // Execution time [1,10]
-        int priority = rand() % 10 + 1; // Priority [1,10]
+        int arrival_time = rand() % 11; 
+        int exec_time = rand() % 10 + 1;
+        int priority = rand() % 10 + 1; 
         fprintf(file, "P%d %d %d %d\n", i, arrival_time, exec_time, priority);
     }
 
@@ -37,7 +37,7 @@ int main() {
     printf("Enter the number of processes to generate: ");
     scanf("%d", &num_processes);
 
-    // Validate input
+    
     if(num_processes > 0) {
         generate_process_file(num_processes);
     } else {

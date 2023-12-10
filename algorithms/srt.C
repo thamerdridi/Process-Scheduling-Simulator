@@ -16,7 +16,7 @@ int readProcesses(const char *filename, Process **processes) {
         return -1;
     }
 
-    Process *tempProcesses = (Process *)malloc(sizeof(Process) * 100); // Assuming max 100 processes
+    Process *tempProcesses = (Process *)malloc(sizeof(Process) * 100); 
     int count = 0;
 
     while (fscanf(file, "%s %d %d %d", tempProcesses[count].pid, &tempProcesses[count].arrival_time, 
@@ -35,7 +35,7 @@ void srt(Process *processes, int n) {
     int lastProcess = -1;
     int totalWaitTime = 0, totalTurnaroundTime = 0;
 
-    // Initialize remaining times
+    
     for (int i = 0; i < n; i++) {
         remainingTime[i] = processes[i].exec_time;
     }
@@ -44,7 +44,7 @@ void srt(Process *processes, int n) {
     while (completed != n) {
         int shortest = -1, minm = INT_MAX;
 
-        // Find the process with the shortest remaining time
+        
         for (int j = 0; j < n; j++) {
             if (processes[j].arrival_time <= currentTime && remainingTime[j] < minm && remainingTime[j] > 0) {
                 minm = remainingTime[j];
@@ -57,27 +57,25 @@ void srt(Process *processes, int n) {
             continue;
         }
 
-        // If a new process is selected and it's not a continuation of the last process
+        
         if (lastProcess != shortest) {
             if (lastProcess != -1) {
-                // Print the end time for the last process before switching
+                
                 printf("%d)] ", currentTime);
             }
             printf("[%s (%d-", processes[shortest].pid, currentTime);
             lastProcess = shortest;
         }
 
-        // Execute the process
+        
         remainingTime[shortest]--;
         currentTime++;
 
-        // If a process is completed
+        
         if (remainingTime[shortest] == 0) {
             completed++;
             printf("%d)] ", currentTime);
-            lastProcess = -1; // Reset last process
-
-            // Calculate waiting time and turnaround time
+            lastProcess = -1;           
             int turnaroundTime = currentTime - processes[shortest].arrival_time;
             int waitingTime = turnaroundTime - processes[shortest].exec_time;
             totalWaitTime += waitingTime;

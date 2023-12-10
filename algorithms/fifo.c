@@ -36,7 +36,7 @@ int compareArrivalTime(const void *a, const void *b) {
 }
 
 void fifo(Process *processes) {
-    // Sort processes based on arrival time
+    
     qsort(processes, num_processes, sizeof(Process), compareArrivalTime);
 
     int currentTime = 0;
@@ -56,7 +56,7 @@ void fifo(Process *processes) {
         totalWaitTime += wait_time;
         totalRotationTime += rotation_time;
 
-        // Display Gantt chart
+        
         printf("[ %s (%d - %d) ] ", processes[i].pid, currentTime - processes[i].exec_time, currentTime);
     }
     printf("\n");

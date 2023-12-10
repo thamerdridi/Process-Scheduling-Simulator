@@ -5,14 +5,14 @@
 #include <stdlib.h>
 #include "process.h"
 
-// Priority scheduling function
+
 static inline void priorityScheduling(Process *processes, int n) {
     int currentTime = 0, completed = 0;
     int lastProcess = -1;
     int totalWaitTime = 0, totalTurnaroundTime = 0;
-    int running = -1; // Index of the currently running process
+    int running = -1; 
 
-    // Enhanced Gantt Chart display
+    
     printf("\n┌─────────────────────────────┐\n");
     printf("│       Gantt Chart          │\n");
     printf("└─────────────────────────────┘\n");
@@ -54,12 +54,11 @@ static inline void priorityScheduling(Process *processes, int n) {
     }
     printf("|\n");
 
-    // Enhanced average time display
+    
     printf("\n┌─────────────────────────────┐\n");
     printf("| Average Wait Time: %.2f     |\n", totalWaitTime / (float)n);
     printf("| Average Turnaround Time: %.2f|\n", totalTurnaroundTime / (float)n);
     printf("└─────────────────────────────┘\n");
 }
 
-#endif // PRIORITY_H
-
+#endif 

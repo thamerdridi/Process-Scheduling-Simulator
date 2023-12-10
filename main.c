@@ -29,7 +29,7 @@ int main() {
     int num_processes;
     printf("How many processes do you want to generate? ");
     scanf("%d", &num_processes);
-    generate_process_file(num_processes); // This will create 'file1.txt'
+    generate_process_file(num_processes); 
 
     char choice[10];
     int quantum;

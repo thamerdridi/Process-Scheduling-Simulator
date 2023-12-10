@@ -13,27 +13,26 @@ typedef struct {
     int priority;
 } Process;
 
-// Function to trim leading and trailing white spaces
+
 char* trimWhiteSpace(char* str) {
     char* end;
 
-    // Trim leading space
+    
     while (isspace((unsigned char)*str)) str++;
 
-    if (*str == 0)  // All spaces?
+    if (*str == 0)  
         return str;
 
-    // Trim trailing space
+    
     end = str + strlen(str) - 1;
     while (end > str && isspace((unsigned char)*end)) end--;
 
-    // Write new null terminator character
+    
     end[1] = '\0';
 
     return str;
 }
 
-// Inline implementation of readProcesses
 Process* readProcesses(const char *filename, int *num_processes) {
     FILE *file = fopen(filename, "r");
     if (!file) {
@@ -47,7 +46,7 @@ Process* readProcesses(const char *filename, int *num_processes) {
 
     char line[1024];
     while (fgets(line, sizeof(line), file)) {
-        // Trim white space and ignore empty lines and comments
+        
         char* trimmedLine = trimWhiteSpace(line);
         if (trimmedLine[0] == '\0' || trimmedLine[0] == '#') {
             continue;
@@ -69,5 +68,4 @@ Process* readProcesses(const char *filename, int *num_processes) {
     return processes;
 }
 
-#endif // PROCESS_H
-
+#endif

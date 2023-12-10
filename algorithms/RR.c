@@ -39,7 +39,7 @@ void roundRobin(Process *processes, int n, int quantum) {
     int *turnaroundTime = malloc(n * sizeof(int));
     int *isCompleted = calloc(n, sizeof(int));
 
-    // Initialize arrays
+    
     for (int i = 0; i < n; i++) {
         remainingTime[i] = processes[i].exec_time;
         waitTime[i] = -1;
@@ -70,7 +70,7 @@ void roundRobin(Process *processes, int n, int quantum) {
                 }
             }
         }
-        // If no process was executed in this round, increment current time
+        
         if (completed == n) {
             break;
         }
@@ -95,7 +95,7 @@ void roundRobin(Process *processes, int n, int quantum) {
 
 int main() {
     Process *processes;
-    int n = readProcesses("file1.txt", &processes); // Use the correct path for your file1.txt
+    int n = readProcesses("file1.txt", &processes); 
 
     if (n > 0) {
         int quantum;

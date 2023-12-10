@@ -5,14 +5,14 @@
 #include <stdlib.h>
 #include "process.h"
 
-// Function to compare arrival times (used in qsort)
+
 static inline int compareArrivalTime(const void *a, const void *b) {
     Process *processA = (Process *)a;
     Process *processB = (Process *)b;
     return processA->arrival_time - processB->arrival_time;
 }
 
-// FIFO scheduling function
+
 static inline void fifo(Process *processes, int num_processes) {
     qsort(processes, num_processes, sizeof(Process), compareArrivalTime);
 
@@ -20,7 +20,7 @@ static inline void fifo(Process *processes, int num_processes) {
     int totalWaitTime = 0;
     int totalRotationTime = 0;
 
-    // Enhanced Gantt Chart display
+    
     printf("\n┌─────────────────────────────┐\n");
     printf("│       Gantt Chart          │\n");
     printf("└─────────────────────────────┘\n");
@@ -40,12 +40,11 @@ static inline void fifo(Process *processes, int num_processes) {
     }
     printf("|\n");
 
-    // Enhanced average time display
+    
     printf("\n┌─────────────────────────────┐\n");
     printf("| Average Wait Time: %.2f     |\n", (float)totalWaitTime / num_processes);
     printf("| Average Rotation Time: %.2f |\n", (float)totalRotationTime / num_processes);
     printf("└─────────────────────────────┘\n");
 }
 
-#endif // FIFO_H
-
+#endif 
